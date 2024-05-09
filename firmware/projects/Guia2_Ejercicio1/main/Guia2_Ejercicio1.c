@@ -1,25 +1,24 @@
-/*! @mainpage Template
+/*! @mainpage Guia2_Ejercicio1
  *
  * @section genDesc General Description
  *
- * This section describes how the program works.
- *
- * <a href="https://drive.google.com/...">Operation Example</a>
+ * Se mide distancia con sensor ultrasonico y se reporta en un display, utilizando los LEDs para marcar medidas.
  *
  * @section hardConn Hardware Connection
  *
  * |    Peripheral  |   ESP32   	|
  * |:--------------:|:--------------|
- * | 	PIN_X	 	| 	GPIO_X		|
+ * | 	HC_SR04	 	| 	GPIO_X		|
+ * | 	LCD0803	 	| 	GPIO_X		|
  *
  *
  * @section changelog Changelog
  *
  * |   Date	    | Description                                    |
  * |:----------:|:-----------------------------------------------|
- * | 12/09/2023 | Document creation		                         |
+ * | 09/05/2024 | Document creation		                         |
  *
- * @author Albano Peñalva (albano.penalva@uner.edu.ar)
+ * @author Nacho Perez
  *
  */
 
@@ -36,20 +35,40 @@
 #include "lcditse0803.h"
 #include "hc_sr04.h"
 /*==================[macros and definitions]=================================*/
+/** @def refresh
+ *  @brief tiempo de actualizacion de tareas
+*/
 #define refresh 1000
+/** @def switch_refresh
+ * @brief tiempo de actualizacion de tarea de control de switch
+*/
 #define switch_refresh 100
 /*==================[internal data definition]===============================*/
+/** @def isON
+ * @brief bool para controlar encendido/apagado
+*/
 bool isON = false;
-uint8_t hold = 0;
+/** @def hold
+ * @brief bool para controlar hold
+*/
+bool hold = 0;
 /*==================[internal functions declaration]=========================*/
+/** @fn encenderLEDS
+ * 	@brief Enciende los LEDs correspondiente con la medicion
+ * 	@param centimetros Medicion en cm
+ * 	@return
+*/
 void encenderLEDS(uint16_t centimetros)
 {
 	if (centimetros >= 10)
 	{
 		LedOn(LED_1);
+		LedOff(LED_2);
+		LedOff(LED_3);
 		if (centimetros >= 20)
 		{
 			LedOn(LED_2);
+			LedOff(LED_3);
 			if (centimetros >= 30)
 			{
 				LedOn(LED_3);
@@ -62,14 +81,17 @@ void encenderLEDS(uint16_t centimetros)
 	}
 }
 
+/** @fn medicionTask
+ * 	@brief Tarea que controla el evento de medir con el sensor ultrasonico
+ * 	@param [void]
+ * 	@return
+*/
 static void medicionTask(void *pvParameter)
 {
 	uint16_t medicion;
 	while (1)
 	{
-		printf("hola");
-		medicion = 15;
-		printf("%d",medicion);
+		medicion = HcSr04ReadDistanceInCentimeters();
 		if (isON)
 		{
 			encenderLEDS(medicion);
@@ -85,6 +107,11 @@ static void medicionTask(void *pvParameter)
 	}
 }
 
+/** @fn switchControl
+ * 	@brief Tarea que controla el evento de los switches
+ * 	@param [void]
+ * 	@return
+*/
 static void switchControl(void *pvParameter)
 {
 	uint8_t teclas;
@@ -113,11 +140,12 @@ void app_main(void)
 	LedsInit();
 	SwitchesInit();
 	LcdItsE0803Init();
-	HcSr04Init(GPIO_2, GPIO_3);
-	LcdItsE0803Write(15);
+	HcSr04Init(GPIO_3, GPIO_2);
 
 	xTaskCreate(&medicionTask, "medicion", 2048, NULL, 5, NULL);
 	xTaskCreate(&switchControl, "switchControl", 512, NULL, 5, NULL);
 	/*xTaskCreate(&ledControl, "ledControl", 512, NULL, 5, &led3_task_handle);*/
+
+	/* Tiempo de pulso a 5cm: 514 us*/
 }
 /*==================[end of file]============================================*/
