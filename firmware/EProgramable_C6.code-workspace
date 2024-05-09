@@ -17,6 +17,24 @@
         },
         {
             "path": "./projects/x_template"
+        },
+        {
+            "path": "projects/Guia1_Ejercicio3"
+        },
+        {
+            "path": "projects/Guia1_Ejercicio4"
+        },
+        {
+            "path": "projects/Guia2_Ejercicio1"
+        },
+        {
+            "path": "projects/Guia2_Ejercicio2"
+        },
+        {
+            "path": "projects/Guia2_Ejercicio3"
+        },
+        {
+            "path": "projects/Guia2_Ejercicio4"
         }
     ],
     "settings": {

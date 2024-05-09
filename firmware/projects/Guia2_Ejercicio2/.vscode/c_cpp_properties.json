@@ -1,0 +1,30 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "compilerPathInCppPropertiesJson": "C:\\Users\\alumno\\.espressif\\tools\\riscv32-esp-elf\\esp-13.2.0_20230928\\riscv32-esp-elf\\bin\\riscv32-esp-elf-gcc.exe",
+            "includePath": [
+                "c:/EProgra/EProgramable_FIUNER/firmware/projects/Guia2_Ejercicio2/**",
+                "C:/Users/alumno/esp/v5.2/esp-idf/components/freertos/FreeRTOS-Kernel-SMP/include",
+                "C:/Users/alumno/esp/v5.2/esp-idf/components/freertos/config/include/freertos"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "windows-gcc-x64",
+            "mergeConfigurations": false,
+            "compilerPath": "C:\\Users\\alumno\\.espressif\\tools\\riscv32-esp-elf\\esp-13.2.0_20230928\\riscv32-esp-elf\\bin\\riscv32-esp-elf-gcc.exe",
+            "browse": {
+                "path": [
+                    "c:/EProgra/EProgramable_FIUNER/firmware/projects/Guia2_Ejercicio2"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ],
+    "version": 4
+}
