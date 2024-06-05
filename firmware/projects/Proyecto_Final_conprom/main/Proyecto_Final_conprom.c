@@ -18,16 +18,23 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "timer_mcu.H"
+
 #include "ADXL335.h"
+#include "led.h"
+#include "timer_mcu.H"
+
+#include "ble_mcu.h"
+
+#include "math.h"
 /*==================[macros and definitions]=================================*/
 /** @def BAUD_RATE
  * @brief baud rate
 */
 #define BAUD_RATE 115200
-
+#define CONFIG_PERIOD_MS 500
 /** @def DECIMAL
  * @brief Constante 10
 */
@@ -46,12 +53,13 @@
 /** @def FREC_LECTURA_US
  * @brief frecuencia de lectura de datos en us
 */
-#define FREC_LECTURA_US 25000
+#define FREC_LECTURA_US 10000
+
+#define CONFIG_BLINK_PERIOD 500
+#define LED_BT	LED_1
 
 /*==================[internal data definition]===============================*/
 TaskHandle_t readacc_task_handle = NULL;
-TaskHandle_t aaa_task_handle = NULL;
-
 
 /** @def cantidad_pasos
  * @brief Define la cantidad de pasos que se dieron
@@ -61,22 +69,22 @@ int cantidad_pasos = 0;
 /** @def umbral
  * @brief Define el valor del umbral para medir los pasos
 */
-float umbral = 6;
+float umbral = 0.5;
 
 /** @def x_promedio
  * @brief Define el promedio de los valores leidos en X en el acelerometro en etapa de calibracion
 */
-float x_promedio;
+float x_promedio = 0;
 
 /** @def y_promedio
  * @brief Define el promedio de los valores leidos en Y en el acelerometro en etapa de calibracion
 */
-float y_promedio;
+float y_promedio = 0;
 
 /** @def z_promedio
  * @brief Define el promedio de los valores leidos en Z en el acelerometro en etapa de calibracion
 */
-float z_promedio;
+float z_promedio = 0;
 
 /** @def CONTAR_PASOS
  * @brief Bandera para determinar si contar o no un paso
@@ -95,6 +103,10 @@ void readacc_timer(void *param)
 	xTaskNotifyGive(readacc_task_handle); /* Envía una notificación a la tarea asociada */
 }
 
+void read_data(uint8_t * data, uint8_t length){
+    /* Data */
+}
+
 /** @fn control_prom_timer
  *  @brief Función invocada en la interrupción del timer B
  * 	@param[in] No hay parametros
@@ -102,7 +114,7 @@ void readacc_timer(void *param)
  */
 void control_prom_timer(void *param)
 {
-	xTaskNotifyGive(control_prom_task_handle); /* Envía una notificación a la tarea asociada */
+	//xTaskNotifyGive(control_prom_task_handle); /* Envía una notificación a la tarea asociada */
 }
 
 /** @fn readacc_task
@@ -112,37 +124,51 @@ void control_prom_timer(void *param)
 */
 void readacc_task(void *pvParameter)
 {
-    float umbral;
     float maximos[CANTIDAD_MAXIMOS] = {0};
-    float vector_acc;
+    float vector_acc = 0;
+
+    float ultimos_vectores_acc[20] = {0};
+    float promedio_ultimos_vectores_acc = 0;
+
+    uint8_t contador = 0;
+
+    float lectura_x, lectura_y, lectura_z;
+    
+	char msg[48];
+    
 	while (1)
-	{
+	{        
 		ulTaskNotifyTake(pdTRUE, portMAX_DELAY); /* Espera aca hasta nueva notificacion */
         /* Codigo para encontrar maximos y hacer umbral adaptativo */
 
         /* Codigo para contar pasos */
-        vector_acc = sqrt((ReadXValue-x_promedio)^2 + (ReadYValue-y_promedio)^2 + (ReadZValue-z_promedio)^2);
+        lectura_x = ReadXValue();
+        lectura_y = ReadYValue();
+        lectura_z = ReadZValue();
+
+        promedio_ultimos_vectores_acc = promedio_ultimos_vectores_acc*20 - ultimos_vectores_acc[contador];
+
+        ultimos_vectores_acc[contador] = sqrt((lectura_x-x_promedio)*(lectura_x-x_promedio) + (lectura_y-y_promedio)*(lectura_y-y_promedio) + (lectura_z-z_promedio)*(lectura_z-z_promedio));
+        
+        promedio_ultimos_vectores_acc = (promedio_ultimos_vectores_acc + ultimos_vectores_acc[contador])/20;
+
+        vector_acc = promedio_ultimos_vectores_acc;
 
         if(vector_acc > umbral && CONTAR_PASOS){
             CONTAR_PASOS = !CONTAR_PASOS; //Levanta bandera para no seguir contando pasos
-            CANTIDAD_PASOS++; //Suma un paso al detectar que el vector_acc supero el umbral y la bandera esta baja
-        } else if (vector_acc < umbral && !CONTAR_PASOS)
-        {
+            cantidad_pasos++; //Suma un paso al detectar que el vector_acc supero el umbral y la bandera esta baja
+
+            //Se da formato y se envia msg por BT
+            sprintf(msg, "Cantidad de pasos: %d\n", cantidad_pasos );
+            BleSendString(msg);
+
+        } else if (vector_acc < umbral && !CONTAR_PASOS) {
             CONTAR_PASOS = !CONTAR_PASOS; //Baja bandera
         }        
-	}
-}
 
-/** @fn aaa
- * 	@brief Tarea que actualiza promedios
- * 	@param[in] No hay parametros
- * 	@return
-*/
-void aaa(void *pvParameter)
-{
-	while (1)
-	{
-		ulTaskNotifyTake(pdTRUE, portMAX_DELAY); /* Espera aca hasta nueva notificacion */
+        contador++;
+        if(contador >= 20) contador = 0; //Reinicia contador
+
 	}
 }
 
@@ -151,11 +177,8 @@ void aaa(void *pvParameter)
  *  @param[in] No hay parámetros
  * 	@return 1 (TRUE) si no hay error
 */
-Calibrate_Acc(){
+bool Calibrate_Acc(){
     /* Loop para leer los valores iniciales */
-    x_promedio = 0;
-    y_promedio = 0;
-    z_promedio = 0;
     for (uint16_t i = 0; i < LECTURAS_CALIBRACION; i++)
     {
         /* Sumatoria de los primeros *LECTURAS_CALIBRACION* valores */
@@ -172,82 +195,53 @@ Calibrate_Acc(){
     return 1;
 }
 
-/** @fn InitPdmtr
- * 	@brief Inicializa accesorios y variables iniciales para poder utilizar el podometro
- *  @param[in] No hay parámetros
- * 	@return 1 (TRUE) si no hay error
-*/
-bool InitPdmtr(){
+/*==================[external functions definition]==========================*/
+void app_main(void){
     /* Inicializacion de acelerometro */
     ADXL335Init();
 
-    if(Calibrate_Acc()){
-        //Calibracion finalizada
-    }
+    /* Calibracion */
+    Calibrate_Acc();
 
-    /* Inicializacion bt */
-    /*le_config_t ble_configuration = {
-        "ESP_EDU_1",
+    /* Inicializacion LEDS */
+    LedsInit();
+
+    /* Inicializacion BT */
+    ble_config_t ble_configuration = {
+        "NachoP",
         read_data
     };
-    
-    BleInit(&ble_configuration);*/
 
-    return 1;    
-}
+    BleInit(&ble_configuration);
 
-/** @fn InitTasks
- * 	@brief Inicializa tareas
- *  @param[in] No hay parámetros
- * 	@return 1 (TRUE) si no hay error
-*/
-bool InitTasks(){
-    /* Task creation */
-	xTaskCreate(&readacc_task, "Reading", 1024, NULL, 5, &readacc_task_handle);
-	//xTaskCreate(&control_prom_task, "Calculo_Prom", 1024, NULL, 5, &control_prom_task_handle);
-    return 1;
-}
-
-/** @fn InitTimers
- * 	@brief Inicializa timers
- *  @param[in] No hay parámetros
- * 	@return 1 (TRUE) si no hay error
-*/
-bool InitTimers(){
     /* Inicialización de timers */
-	timer_config_t timer_readacc= {
+    timer_config_t timer_readacc= {
 		.timer = TIMER_A,
 		.period = FREC_LECTURA_US,
 		.func_p = &readacc_timer,
 		.param_p = NULL,
 	};
 	TimerInit(&timer_readacc);
-	/*timer_config_t timer_promedio = {
-		.timer = TIMER_B,
-		.period = FREC_CONTROL_PROM_US,
-		.func_p = &control_prom_timer,
-		.param_p = NULL,
-	};
-	TimerInit(&timer_promedio);*/
-    
+
+    /* Task creation */
+	xTaskCreate(&readacc_task, "Reading", 2048, NULL, 5, &readacc_task_handle);
+	//xTaskCreate(&control_prom_task, "Calculo_Prom", 1024, NULL, 5, &control_prom_task_handle);
+
 	/* Inicialización del conteo de timers */
 	TimerStart(timer_readacc.timer);
-	//TimerStart(timer_promedio.timer);
 
-    return 1;
-}
-
-/*==================[external functions definition]==========================*/
-void app_main(void){
-    if(InitPdmtr()){
-        //Podometro inicializado
-    }
-
-    if(InitTasks()){
-        //Tasks inicializadas
-    }
-
-    if(InitTimers()){
-        //Timers inicialziados
+    while(1){
+        vTaskDelay(CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
+        switch(BleStatus()){
+            case BLE_OFF:
+                LedOff(LED_BT);
+            break;
+            case BLE_DISCONNECTED:
+                LedToggle(LED_BT);
+            break;
+            case BLE_CONNECTED:
+                LedOn(LED_BT);
+            break;
+        }
     }
 }
