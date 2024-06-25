@@ -40,10 +40,10 @@
 */
 #define DECIMAL 10
 
-/** @def ULTIMOS_VALORES
+/** @def CANTIDAD_VALORES
  * @brief Cuantos valores se toman en cuenta para suavizar la señal
 */
-#define ULTIMOS_VALORES 10
+#define CANTIDAD_VALORES 10
 
 /** @def LECTURAS_CALIBRACION
  * @brief Cuantos valores se quieren tomar en cuenta
@@ -60,17 +60,29 @@
 */
 #define PERIODO_REFRACTARIO_US 400000
 
+/** @def CONFIG_BLINK_PERIOD
+ * @brief Periodo para TOGGLE de LED_BT
+*/
 #define CONFIG_BLINK_PERIOD 500
 
+/** @def LED_BT
+ * @brief Led que se enciende para indicar estado de conexion BT
+*/
 #define LED_BT	LED_1
 
 /*==================[internal data definition]===============================*/
 TaskHandle_t readacc_task_handle = NULL;
+TaskHandle_t contarpasos_task_handle = NULL;
 
 /** @def cantidad_pasos
  * @brief Define la cantidad de pasos que se dieron
 */
 int cantidad_pasos = 0;
+
+/** @def vector_acc
+ * @brief Float para vector aceleracion
+ */
+ float vector_acc = 0;
 
 /** @def umbral
  * @brief Define el valor del umbral para medir los pasos
@@ -95,41 +107,34 @@ float z_promedio = 0;
 /*==================[internal functions declaration]=========================*/
 
 /** @fn readacc_timer
- *  @brief Función invocada en la interrupción del timer A
+ * @brief Función invocada en la interrupción del timer A
  */
 void readacc_timer(void *param)
 {
 	xTaskNotifyGive(readacc_task_handle); /* Envía una notificación a la tarea asociada */
 }
 
-/** @fn control_prom_timer
- *  @brief Función invocada en la interrupción del timer B
+/** @fn contarpasos_timer
+ * @brief Función invocada en la interrupción del timer B
  */
-void control_prom_timer(void *param)
+void contarpasos_timer(void *param)
 {
-	//xTaskNotifyGive(control_prom_task_handle); /* Envía una notificación a la tarea asociada */
+	xTaskNotifyGive(contarpasos_task_handle); /* Envía una notificación a la tarea asociada */
 }
 
 /** @fn readacc_task
  * 	@brief Tarea que controla el evento de leer el acelerometro
-*/
+ */
 void readacc_task(void *pvParameter)
 {
-    float vector_acc = 0;
+    float vector_acc_aux = 0;
 
-    uint16_t t_refractario = 0;
-
-    bool contar_pasos = true;
-    bool tiempo_muerto = false;
-
-    float ultimos_vectores_acc[ULTIMOS_VALORES] = {0};
+    float ultimos_vectores_acc[CANTIDAD_VALORES] = {0};
     float promedio_ultimos_vectores_acc = 0;
     
     uint8_t contador = 0;
 
     float lectura_x, lectura_y, lectura_z;
-    
-	char msg[48];
     
 	while (1)
 	{        
@@ -141,51 +146,69 @@ void readacc_task(void *pvParameter)
         lectura_y = ReadYValue();
         lectura_z = ReadZValue();
 
-        // Calcula el vector_acc
-        // Saco del promedio el valor que voy a sobre escribir
-        promedio_ultimos_vectores_acc = promedio_ultimos_vectores_acc*ULTIMOS_VALORES - ultimos_vectores_acc[contador];
-
-        // Sobreescribo el ultimo valor leido
-        ultimos_vectores_acc[contador] = sqrt((lectura_x-x_promedio)*(lectura_x-x_promedio) + (lectura_y-y_promedio)*(lectura_y-y_promedio) + (lectura_z-z_promedio)*(lectura_z-z_promedio));
+        // Calcula el vector_acc_aux
+        vector_acc_aux = sqrt((lectura_x-x_promedio)*(lectura_x-x_promedio) + (lectura_y-y_promedio)*(lectura_y-y_promedio) + (lectura_z-z_promedio)*(lectura_z-z_promedio));
         
+        // Incluyo el ultimo valor en el vector de los ultimos valores
+        ultimos_vectores_acc[contador] = vector_acc_aux;
+
         //Calculo el promedio
-        promedio_ultimos_vectores_acc = (promedio_ultimos_vectores_acc + ultimos_vectores_acc[contador])/ULTIMOS_VALORES;
-
-        vector_acc = promedio_ultimos_vectores_acc;
-
-        if(tiempo_muerto){//Tiempo en que no se toma lectura
-            t_refractario = t_refractario + FREC_LECTURA_US/1000;
-            if (t_refractario >= PERIODO_REFRACTARIO_US/1000){
-                t_refractario = 0;
-                contar_pasos = !contar_pasos;
-                tiempo_muerto = !tiempo_muerto;
-            }
-        } else {
-            if(vector_acc < umbral*0.9 && !contar_pasos){
-                tiempo_muerto = !tiempo_muerto;
-            }
-        
-            if (vector_acc > umbral*1.1 && contar_pasos){// Controla si se dio un paso o no
-                //Levanta bandera para no seguir contando pasos
-                contar_pasos = !contar_pasos; 
-
-                cantidad_pasos++; //Suma un paso al detectar que el vector_acc supero el umbral y la bandera esta baja
-
-                //Se da formato y se envia msg por BT
-                sprintf(msg, "Cantidad de pasos: %d\n", cantidad_pasos );
-
-                BleSendString(msg);
-            }   
+        promedio_ultimos_vectores_acc = 0;
+        for (uint16_t i = 0; i < contador; i++)
+        {
+            promedio_ultimos_vectores_acc = promedio_ultimos_vectores_acc + ultimos_vectores_acc[contador];
         }
+
+        vector_acc = promedio_ultimos_vectores_acc/contador;   
         
         contador++;
-        if(contador >= ULTIMOS_VALORES) contador = 0; //Reinicia contador
+        if(contador >= CANTIDAD_VALORES) contador = 0; //Reinicia contador
 	}
 }
 
+/** @fn contarpasos_task
+ * @brief tarea que se encarga de determinar si hubo o no un paso
+ */
+void contarpasos_task(){
+    uint16_t t_refractario = 0;
+
+    bool contar_pasos = true;
+    bool tiempo_muerto = false;
+    
+	char msg[48];
+
+    while(1){
+		ulTaskNotifyTake(pdTRUE, portMAX_DELAY); /* Espera aca hasta nueva notificacion */
+
+        if (vector_acc > umbral && contar_pasos){
+            // Controla si se dio un paso o no
+            // Levanta bandera para no seguir contando pasos
+            contar_pasos = !contar_pasos;
+
+            // Baja bandera para controlar tiempo muerto
+            tiempo_muerto = !tiempo_muerto; 
+ 
+            //Suma un paso al detectar que el vector_acc supero el umbral y la bandera esta baja
+            cantidad_pasos++;
+
+            // Se da formato y se envia msg por BT
+            sprintf(msg, "Cantidad de pasos: %d\n", cantidad_pasos );
+
+            BleSendString(msg);
+        } else if(tiempo_muerto){// Tiempo en que no se toma lectura
+            t_refractario = t_refractario + FREC_LECTURA_US/1000;
+            if (t_refractario >= PERIODO_REFRACTARIO_US/1000){
+                t_refractario = 0;
+                contar_pasos = !contar_pasos; // Baja bandera
+                tiempo_muerto = !tiempo_muerto; // Levanta bandera
+            }
+        }
+    }
+}
+
 /** @fn Calibrate_Acc
- * 	@brief Calibra el acelerometro calculando los valores promedios del estado inicial
- * 	@return 1 (TRUE) si no hay error
+ * @brief Calibra el acelerometro calculando los valores promedios del estado inicial
+ * @return 1 (TRUE) si no hay error
 */
 bool Calibrate_Acc(){
     /* Loop para leer los valores iniciales */
@@ -208,6 +231,11 @@ bool Calibrate_Acc(){
     return 1;
 }
 
+/** @fn read_data
+ * @brief Tiempo por el cual no se va a tomar una nueva lectura
+ * @param data mensaje recibido
+ * @param lenght largo de data 
+ */
 void read_data(uint8_t * data, uint8_t length){
     /* Data */
     if(data[0] == 'R'){
@@ -242,13 +270,22 @@ void app_main(void){
 		.param_p = NULL,
 	};
 	TimerInit(&timer_readacc);
+    
+    timer_config_t timer_contarpasos= {
+		.timer = TIMER_B,
+		.period = FREC_LECTURA_US,
+		.func_p = &contarpasos_timer,
+		.param_p = NULL,
+	};
+	TimerInit(&timer_contarpasos);
 
     /* Task creation */
 	xTaskCreate(&readacc_task, "Reading", 2048, NULL, 5, &readacc_task_handle);
-	//xTaskCreate(&control_prom_task, "Calculo_Prom", 1024, NULL, 5, &control_prom_task_handle);
+    xTaskCreate(&contarpasos_task, "Contar", 2048. NULL. 5, &contarpasos_task_handle);
 
 	/* Inicialización del conteo de timers */
 	TimerStart(timer_readacc.timer);
+    TimerStart(timer_contarpasos.timer);
 
     // While para usar LEDs de guia para la conexion BT
     while(1){

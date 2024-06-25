@@ -1,0 +1,80 @@
+\chapter{Grabación y Depuración}
+\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2depuraci_x_c3_x_b3n}{}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2depuraci_x_c3_x_b3n}\index{Grabación y Depuración@{Grabación y Depuración}}
+\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2depuraci_x_c3_x_b3n_autotoc_md5}%
+\Hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2depuraci_x_c3_x_b3n_autotoc_md5}%
+ A continuación se detallan los pasos para la grabación de la placa ESP32-\/\+C6-\/\+Dev\+Kit\+C-\/1 con un programa compilado, y para el manejo de las herramientas depuración.
+
+
+\begin{DoxyEnumerate}
+\item Grabación
+\item Depuración
+\item Monitor Serie
+\end{DoxyEnumerate}\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2depuraci_x_c3_x_b3n_autotoc_md6}{}\doxysection{\texorpdfstring{Grabación}{Grabación}}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2depuraci_x_c3_x_b3n_autotoc_md6}
+
+\begin{DoxyEnumerate}
+\item Conecte la placa ESP32-\/\+C6-\/\+Dev\+Kit\+C-\/1 a su computadora utilizando un cable USB-\/C en el conector señalado como {\ttfamily USB}.
+
+
+\item Presione el botón  ({\ttfamily ESP-\/\+IDF\+: Flash Device}). La primera vez que realice la grabación le aparecerá una ventana prguntando si desea lanzar Open\+OCD, presione {\ttfamily Yes}.
+
+
+\item El programa comenzará con la grabación del microcontrolador. Si esta se completa correctamente, podrá observar el mensaje {\ttfamily Flashed Successfully (JTag)} en la pestaña {\ttfamily OUTPUT}.
+
+
+
+Si observa la placa, también podrá observar el parpadeo del LED1.
+\end{DoxyEnumerate}
+
+\begin{quote}
+\mbox{[}!\+WARNING\mbox{]} Si Open\+OCD se encuentra corriendo y usted desconecta el cable USB se le mostrarán múltiples notificaciones de error. Se recomienda siempre detener Open\+OCD antes de desconectar el USB. (Click en {\ttfamily ❇️ ESP-\/\+IDF\+: Open\+OCD Server (Running)} y luego en {\ttfamily Stop Open\+OCD}) \end{quote}
+\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2depuraci_x_c3_x_b3n_autotoc_md7}{}\doxysection{\texorpdfstring{Depuración}{Depuración}}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2depuraci_x_c3_x_b3n_autotoc_md7}
+El modo de Depuración (Debug) nos permite correr el código del programa de manera controlada en el microcontrolador, a la vez que se pueden observar los valores de variables y registros. Para entrar en modo Depuración se debe\+:
+
+
+\begin{DoxyEnumerate}
+\item Asegúrese de que Open\+OCD esté corriendo.
+
+
+
+En caso contrario, inícielo presionando en {\ttfamily ❌ ESP-\/\+IDF\+: Open\+OCD Server (Stoped)} y luego en {\ttfamily Start Open\+OCD}.
+
+
+\item Cambie a la vista {\ttfamily Run and Debug} presionando  y luego seleccione en el menú desplegable el proyecto sobre el cual realizar debug (en este caso {\ttfamily ESP32 Open\+OCD (0\+\_\+blinking)}).
+
+
+\item Presione el botón  ({\ttfamily Start Debuging}) o {\ttfamily F5}. Una vez iniciado el modo debug se mostrará una nueva barra con botones para el control de la ejecución del programa.
+
+
+\end{DoxyEnumerate}
+
+\begin{quote}
+\mbox{[}!\+WARNING\mbox{]} Si Open\+OCD se encuentra corriendo y usted desconecta el cable USB se le mostrarán múltiples notificaciones de error. Se recomienda siempre detener Open\+OCD antes de desconectar el USB. (Click en {\ttfamily ❇️ ESP-\/\+IDF\+: Open\+OCD Server (Running)} y luego en {\ttfamily Stop Open\+OCD}) \end{quote}
+\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2depuraci_x_c3_x_b3n_autotoc_md8}{}\doxysection{\texorpdfstring{Monitor Serie}{Monitor Serie}}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2depuraci_x_c3_x_b3n_autotoc_md8}
+El {\ttfamily ESP-\/\+IDF Monitor} permite imprimir por pantalla mensajes enviados desde el microcontrolador, que pueden ser de utilidad para la verificación del funcionamiento de un programa. En el mismo se muestran los mensajes enviados utilizando las funciones {\ttfamily printf()} o {\ttfamily ESP\+\_\+\+LOG()}.
+
+
+\begin{DoxyEnumerate}
+\item Seleccione el puerto {\ttfamily COM} correspondiente a la placa, presionando en {\ttfamily COM14} y luego en el número de puerto correspondiente.
+
+
+\end{DoxyEnumerate}
+
+\begin{quote}
+\mbox{[}!\+TIP\mbox{]} El número del puerto {\ttfamily COM} es asignado por su sistema operativo al momento de conectar la placa por primera vez, por lo tanto puede variar de un dispositivo a otro. \end{quote}
+
+\begin{DoxyEnumerate}
+\item Presione el botón  ({\ttfamily ESP-\/\+IDF\+: Monitor Device}). Se abrirá un nuevo terminal llamado {\ttfamily ESP-\/\+IDF monitor} donde se mostrarán los mensajes enviados.
+
+
+\end{DoxyEnumerate}
+
+\begin{quote}
+\mbox{[}!\+IMPORTANT\mbox{]} Al ejecutar el {\ttfamily Monitor} el microcontrolador se reinicia, por lo tanto los mensajes mostrados parten desde el inicio de la ejecución del programa grabado. \end{quote}
+
+\begin{DoxyEnumerate}
+\item También se puede modificar la configuración del puerto COM desde el archivo de configuración del workspace. Esto es útil cuando se va a trabajar durante todo el cursado con una misma PC (de modo contrario hay que modificar el puerto COM en cada proyecto). Para esto se debe abrir el archivo {\ttfamily EProgramable\+\_\+\+C6.\+code-\/workspace} ubicado en {\ttfamily C\+:/\+Repositorios/\+Electronica\+Programable\+\_\+\+ESP32/firmware/} y modificar la línea {\ttfamily "{}idf.\+port\+Win"{}\+: "{}\+COM14"{},} colocando el número de puerto COM correspondiente.
+
+
+\end{DoxyEnumerate}
+
+Ahora ya puede empezar a trabajar sobre un nuevo proyecto, siguiendo el instructivo \doxysectlink{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2proyecto__nuevo}{Proyecto Nuevo}{0}. 

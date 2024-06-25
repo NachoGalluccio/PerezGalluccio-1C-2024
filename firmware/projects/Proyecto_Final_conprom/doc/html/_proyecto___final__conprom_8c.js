@@ -1,0 +1,26 @@
+var _proyecto___final__conprom_8c =
+[
+    [ "BAUD_RATE", "_proyecto___final__conprom_8c.html#ad4455691936f92fdd6c37566fc58ba1f", null ],
+    [ "CANTIDAD_VALORES", "_proyecto___final__conprom_8c.html#a1d2e92a2505a8cb14b67a8822a6362a3", null ],
+    [ "CONFIG_BLINK_PERIOD", "_proyecto___final__conprom_8c.html#a3df1b4cad09974bfc68858fad7cdc054", null ],
+    [ "DECIMAL", "_proyecto___final__conprom_8c.html#a7c2d2b121faf048e9623df797612378c", null ],
+    [ "FREC_LECTURA_US", "_proyecto___final__conprom_8c.html#a597105285373b11c85e03a120ec4b9f3", null ],
+    [ "LECTURAS_CALIBRACION", "_proyecto___final__conprom_8c.html#ab7d58dd43d29fe9fc31d70827e5d9d3a", null ],
+    [ "LED_BT", "_proyecto___final__conprom_8c.html#a7a3ccd8a43b5c5e8a4d573780da1fd4a", null ],
+    [ "PERIODO_REFRACTARIO_US", "_proyecto___final__conprom_8c.html#a6005c338456fad88870e6d2da2b958fe", null ],
+    [ "app_main", "_proyecto___final__conprom_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70", null ],
+    [ "Calibrate_Acc", "_proyecto___final__conprom_8c.html#acaf0d547476901a90e4a51d6e81fc284", null ],
+    [ "contarpasos_task", "_proyecto___final__conprom_8c.html#a0875cb769502462b561850733b990335", null ],
+    [ "contarpasos_timer", "_proyecto___final__conprom_8c.html#a89fa2f6b0c081e4de20190c8daf37335", null ],
+    [ "read_data", "_proyecto___final__conprom_8c.html#ab56e1ff0f71e003f2e08c6ec294528b1", null ],
+    [ "readacc_task", "_proyecto___final__conprom_8c.html#a37c6dae4f03b053a4a417d637bf18149", null ],
+    [ "readacc_timer", "_proyecto___final__conprom_8c.html#a73ebd5b43f5ef2b134485e64d95e1620", null ],
+    [ "cantidad_pasos", "_proyecto___final__conprom_8c.html#a7cb81c96bfda294e67390f2f340014c6", null ],
+    [ "contarpasos_task_handle", "_proyecto___final__conprom_8c.html#a294cd207b989defd4fe3eba704337da8", null ],
+    [ "readacc_task_handle", "_proyecto___final__conprom_8c.html#a0c622d8a0cb2bce1b4fbff88a1d844f5", null ],
+    [ "umbral", "_proyecto___final__conprom_8c.html#af1f378fc97506f0b3aea2c33886e498c", null ],
+    [ "vector_acc", "_proyecto___final__conprom_8c.html#a43307fb39631b973a4330b26f309d03f", null ],
+    [ "x_promedio", "_proyecto___final__conprom_8c.html#ab94a3f6d5c6e1b0c1b072cea8db6c613", null ],
+    [ "y_promedio", "_proyecto___final__conprom_8c.html#a106b0de15a24268e756d9eb2c550da57", null ],
+    [ "z_promedio", "_proyecto___final__conprom_8c.html#a22aa4bca587f8effc18ec5906cf3882e", null ]
+];

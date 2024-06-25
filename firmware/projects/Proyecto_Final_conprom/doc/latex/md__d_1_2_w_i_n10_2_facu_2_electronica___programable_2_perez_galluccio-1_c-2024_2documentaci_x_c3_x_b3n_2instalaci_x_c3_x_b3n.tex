@@ -1,0 +1,87 @@
+\chapter{Instalación}
+\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2instalaci_x_c3_x_b3n}{}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2instalaci_x_c3_x_b3n}\index{Instalación@{Instalación}}
+\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2instalaci_x_c3_x_b3n_autotoc_md13}%
+\Hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2instalaci_x_c3_x_b3n_autotoc_md13}%
+ Para las prácticas de laboratorio se utilizará la placa ESP-\/\+EDU como hardware y el software Visual Studio Code como entorno integrado de desarrollo (IDE de sus siglas en inglés). Para que este último sea capaz de programar la placa de desarrollo es necesario descargar componentes de software adicionales. Además, es necesario descargar la herramienta Git para trabajar con repositorios como lo haremos en el cursado. A continuación se detallan los pasos necesarios para la instalación de estas herramientas\+:
+
+
+\begin{DoxyEnumerate}
+\item Git
+\item Doxygen
+\item Visual Studio Code
+\item ESP IDF
+\item C/\+C++ Extension
+\end{DoxyEnumerate}\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2instalaci_x_c3_x_b3n_autotoc_md14}{}\doxysection{\texorpdfstring{Git}{Git}}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2instalaci_x_c3_x_b3n_autotoc_md14}
+Git es un software utilizado para llevar correctamente un registro de cambios en un conjunto de archivos, al mismo tiempo que permite el trabajo colaborativo entre programadores. Para la instalación del paquete diríjase a la siguiente \href{https://git-scm.com/downloads}{\texttt{ página}} y seleccione la versión correspondiente a su sistema operativo. En el caso de ser Windows descargue el instalador “\+Standalone” para la arquitectura de su ordenador. ~\newline
+ Ejecute el instalador, observará una ventana como en la siguiente figura\+:
+
+
+
+Elija en cada ventana la opción por defecto y luego presione instalar. En el caso de utilizar Linux, para la mayoría de las distribuciones basta con correr los siguientes comando en una terminal para instalar el paquete git\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo\ apt-\/get\ update}
+\DoxyCodeLine{sudo\ apt-\/get\ install\ git}
+
+\end{DoxyCode}
+\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2instalaci_x_c3_x_b3n_autotoc_md15}{}\doxysection{\texorpdfstring{Doxygen}{Doxygen}}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2instalaci_x_c3_x_b3n_autotoc_md15}
+El paquete Doxygen permite automatizar la generación de documentación de código utilizando una serie de comandos reservados dentro de los comentarios. Para descargarlo, diríjase al siguiente \href{https://www.doxygen.nl/download.html}{\texttt{ link}} en la sección “\+Sources and binaries”. Los paquetes para linux tienen la extensión “tar.\+gz”, “.\+dmg” para mac OS y “.\+exe” para Windows 64 bits. A continuación se observa la ventana inicial del instalador para este último sistema operativo. Seleccione las opciones por defecto y presione instalar.
+
+\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2instalaci_x_c3_x_b3n_autotoc_md16}{}\doxysection{\texorpdfstring{Visual Studio Code}{Visual Studio Code}}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2instalaci_x_c3_x_b3n_autotoc_md16}
+Visual Studio Code es un IDE y editor de código desarrollado por Microsoft con soporte para múltiples lenguajes de programación. Para descargarlo ingrese a la siguiete \href{https://code.visualstudio.com/}{\texttt{ página}} y elija la versión correspondiente a su sistema operativo. Al ejecutar el instalador aparecerá la pantalla que se observa en la siguiente figura. Acepte las condiciones e instale seleccionando las opciones por defecto.
+
+\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2instalaci_x_c3_x_b3n_autotoc_md17}{}\doxysection{\texorpdfstring{ESP-\/\+IDF}{ESP-\/\+IDF}}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2instalaci_x_c3_x_b3n_autotoc_md17}
+ESP-\/\+IDF (Espressif IoT Development Framework) es la plataforma oficial de desarrollo de Espressif (el fabricante de la placa a utilizar) para los modulos ESP32. Para su instalación siga los siguietes pasos\+:
+
+
+\begin{DoxyEnumerate}
+\item Abra la aplicación Visual Studio Code y diríjase a la vista de Extensiones\+: 
+\item Busque la extensión de ESP-\/\+IDF (use palabras clave como {\ttfamily espressif}, {\ttfamily esp-\/idf}, {\ttfamily esp32}, etc).
+\item Presione el botón {\ttfamily Install}.
+
+
+\item Seleccionar el menú "{}\+View"{} -\/\texorpdfstring{$>$}{>} "{}\+Command Palette"{} y escribir {\ttfamily configure esp-\/idf}.
+
+
+\item Elegir la opción {\ttfamily ESP-\/\+IDF\+: Configure ESP-\/\+IDF Extension}.
+
+
+\item En el menú siguiente seleccionar la opción {\ttfamily Express}.
+
+
+\item A continuación se le mostrarán las opciones de instalación\+:
+\begin{DoxyItemize}
+\item Versión\+: seleccionar {\ttfamily v5.\+1.\+2} o superior.
+\item Directorio de ESP-\/\+IDF\+: por defecto {\ttfamily USERPROFILE\%\textbackslash{}esp}
+\item Directorio de ESP-\/\+IDF Tools\+: por defecto {\ttfamily USERPROFILE\%\textbackslash{}.espressif}
+
+Una vez seleccionadas presione el botón {\ttfamily Install}.
+
+
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\begin{quote}
+\mbox{[}!\+IMPORTANT\mbox{]} Asegúrese que los path de ambas carpetas no contengan {\ttfamily espacio} o la letra {\ttfamily ñ}. \end{quote}
+
+\begin{DoxyEnumerate}
+\item La instalación demorará varios minutos. Una vez completada podrá observar un mensaje indicando que todos los ajustes han sido configurados.
+
+
+\end{DoxyEnumerate}\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2instalaci_x_c3_x_b3n_autotoc_md18}{}\doxysection{\texorpdfstring{C/\+C++ Extension}{C/\+C++ Extension}}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2instalaci_x_c3_x_b3n_autotoc_md18}
+La extensión de Microsoft para C y C++ agrega soporte de lenguaje para C/\+C++ a Visual Studio Code, incluidas funciones de edición y depuración.
+
+
+\begin{DoxyEnumerate}
+\item Abra la aplicación Visual Studio Code y diríjase a la vista de Extensiones\+: 
+\item Busque la extensión de C/\+C++.
+\item Presione el botón {\ttfamily Install}.
+
+
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+
+
+Una vez finalizada la instalación de las herramientas puede continuar con el instructivo de \doxysectlink{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2compilaci_x_c3_x_b3n}{Compilación}{0}. 

@@ -1,0 +1,668 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Proyecto_Final: Referencia del archivo D:/WIN10/Facu/Electronica_Programable/PerezGalluccio-1C-2024/firmware/projects/Proyecto_Final_conprom/main/Proyecto_Final_conprom.c</title>
+<link rel="icon" href="icon.ico" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="fiuner.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">Proyecto_Final<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_proyecto___final__conprom_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">defines</a> &#124;
+<a href="#func-members">Funciones</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Referencia del archivo Proyecto_Final_conprom.c</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &quot;freertos/FreeRTOS.h&quot;</code><br />
+<code>#include &quot;freertos/task.h&quot;</code><br />
+<code>#include &quot;ADXL335.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="led_8h_source.html">led.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="timer__mcu_8h_source.html">timer_mcu.H</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ble__mcu_8h_source.html">ble_mcu.h</a>&quot;</code><br />
+<code>#include &quot;math.h&quot;</code><br />
+</div>
+<p><a href="_proyecto___final__conprom_8c_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:ad4455691936f92fdd6c37566fc58ba1f" id="r_ad4455691936f92fdd6c37566fc58ba1f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4455691936f92fdd6c37566fc58ba1f">BAUD_RATE</a>&#160;&#160;&#160;115200</td></tr>
+<tr class="memdesc:ad4455691936f92fdd6c37566fc58ba1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">baud rate  <br /></td></tr>
+<tr class="separator:ad4455691936f92fdd6c37566fc58ba1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c2d2b121faf048e9623df797612378c" id="r_a7c2d2b121faf048e9623df797612378c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c2d2b121faf048e9623df797612378c">DECIMAL</a>&#160;&#160;&#160;10</td></tr>
+<tr class="memdesc:a7c2d2b121faf048e9623df797612378c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constante 10.  <br /></td></tr>
+<tr class="separator:a7c2d2b121faf048e9623df797612378c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d2e92a2505a8cb14b67a8822a6362a3" id="r_a1d2e92a2505a8cb14b67a8822a6362a3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d2e92a2505a8cb14b67a8822a6362a3">CANTIDAD_VALORES</a>&#160;&#160;&#160;10</td></tr>
+<tr class="memdesc:a1d2e92a2505a8cb14b67a8822a6362a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cuantos valores se toman en cuenta para suavizar la señal.  <br /></td></tr>
+<tr class="separator:a1d2e92a2505a8cb14b67a8822a6362a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7d58dd43d29fe9fc31d70827e5d9d3a" id="r_ab7d58dd43d29fe9fc31d70827e5d9d3a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7d58dd43d29fe9fc31d70827e5d9d3a">LECTURAS_CALIBRACION</a>&#160;&#160;&#160;100</td></tr>
+<tr class="memdesc:ab7d58dd43d29fe9fc31d70827e5d9d3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cuantos valores se quieren tomar en cuenta.  <br /></td></tr>
+<tr class="separator:ab7d58dd43d29fe9fc31d70827e5d9d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a597105285373b11c85e03a120ec4b9f3" id="r_a597105285373b11c85e03a120ec4b9f3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a597105285373b11c85e03a120ec4b9f3">FREC_LECTURA_US</a>&#160;&#160;&#160;20000</td></tr>
+<tr class="memdesc:a597105285373b11c85e03a120ec4b9f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">frecuencia de lectura de datos en us  <br /></td></tr>
+<tr class="separator:a597105285373b11c85e03a120ec4b9f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6005c338456fad88870e6d2da2b958fe" id="r_a6005c338456fad88870e6d2da2b958fe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6005c338456fad88870e6d2da2b958fe">PERIODO_REFRACTARIO_US</a>&#160;&#160;&#160;400000</td></tr>
+<tr class="memdesc:a6005c338456fad88870e6d2da2b958fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tiempo por el cual no se va a tomar una nueva lectura.  <br /></td></tr>
+<tr class="separator:a6005c338456fad88870e6d2da2b958fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3df1b4cad09974bfc68858fad7cdc054" id="r_a3df1b4cad09974bfc68858fad7cdc054"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3df1b4cad09974bfc68858fad7cdc054">CONFIG_BLINK_PERIOD</a>&#160;&#160;&#160;500</td></tr>
+<tr class="memdesc:a3df1b4cad09974bfc68858fad7cdc054"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodo para TOGGLE de LED_BT.  <br /></td></tr>
+<tr class="separator:a3df1b4cad09974bfc68858fad7cdc054"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a3ccd8a43b5c5e8a4d573780da1fd4a" id="r_a7a3ccd8a43b5c5e8a4d573780da1fd4a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a3ccd8a43b5c5e8a4d573780da1fd4a">LED_BT</a>&#160;&#160;&#160;<a class="el" href="group___l_e_d.html#ggab6831a7d06c0a2bc69f9b024f6445a80a11a9adb9054de1fe01d6a6750075f57b">LED_1</a></td></tr>
+<tr class="memdesc:a7a3ccd8a43b5c5e8a4d573780da1fd4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Led que se enciende para indicar estado de conexion BT.  <br /></td></tr>
+<tr class="separator:a7a3ccd8a43b5c5e8a4d573780da1fd4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:a73ebd5b43f5ef2b134485e64d95e1620" id="r_a73ebd5b43f5ef2b134485e64d95e1620"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73ebd5b43f5ef2b134485e64d95e1620">readacc_timer</a> (void *param)</td></tr>
+<tr class="separator:a73ebd5b43f5ef2b134485e64d95e1620"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89fa2f6b0c081e4de20190c8daf37335" id="r_a89fa2f6b0c081e4de20190c8daf37335"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89fa2f6b0c081e4de20190c8daf37335">contarpasos_timer</a> (void *param)</td></tr>
+<tr class="separator:a89fa2f6b0c081e4de20190c8daf37335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37c6dae4f03b053a4a417d637bf18149" id="r_a37c6dae4f03b053a4a417d637bf18149"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37c6dae4f03b053a4a417d637bf18149">readacc_task</a> (void *pvParameter)</td></tr>
+<tr class="separator:a37c6dae4f03b053a4a417d637bf18149"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0875cb769502462b561850733b990335" id="r_a0875cb769502462b561850733b990335"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0875cb769502462b561850733b990335">contarpasos_task</a> ()</td></tr>
+<tr class="memdesc:a0875cb769502462b561850733b990335"><td class="mdescLeft">&#160;</td><td class="mdescRight">tarea que se encarga de determinar si hubo o no un paso  <br /></td></tr>
+<tr class="separator:a0875cb769502462b561850733b990335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaf0d547476901a90e4a51d6e81fc284" id="r_acaf0d547476901a90e4a51d6e81fc284"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acaf0d547476901a90e4a51d6e81fc284">Calibrate_Acc</a> ()</td></tr>
+<tr class="memdesc:acaf0d547476901a90e4a51d6e81fc284"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calibra el acelerometro calculando los valores promedios del estado inicial.  <br /></td></tr>
+<tr class="separator:acaf0d547476901a90e4a51d6e81fc284"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab56e1ff0f71e003f2e08c6ec294528b1" id="r_ab56e1ff0f71e003f2e08c6ec294528b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab56e1ff0f71e003f2e08c6ec294528b1">read_data</a> (uint8_t *data, uint8_t length)</td></tr>
+<tr class="separator:ab56e1ff0f71e003f2e08c6ec294528b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a630544a7f0a2cc40d8a7fefab7e2fe70" id="r_a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a> (void)</td></tr>
+<tr class="separator:a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a0c622d8a0cb2bce1b4fbff88a1d844f5" id="r_a0c622d8a0cb2bce1b4fbff88a1d844f5"><td class="memItemLeft" align="right" valign="top">TaskHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c622d8a0cb2bce1b4fbff88a1d844f5">readacc_task_handle</a> = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:a0c622d8a0cb2bce1b4fbff88a1d844f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a294cd207b989defd4fe3eba704337da8" id="r_a294cd207b989defd4fe3eba704337da8"><td class="memItemLeft" align="right" valign="top">TaskHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a294cd207b989defd4fe3eba704337da8">contarpasos_task_handle</a> = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:a294cd207b989defd4fe3eba704337da8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cb81c96bfda294e67390f2f340014c6" id="r_a7cb81c96bfda294e67390f2f340014c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cb81c96bfda294e67390f2f340014c6">cantidad_pasos</a> = 0</td></tr>
+<tr class="separator:a7cb81c96bfda294e67390f2f340014c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43307fb39631b973a4330b26f309d03f" id="r_a43307fb39631b973a4330b26f309d03f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43307fb39631b973a4330b26f309d03f">vector_acc</a> = 0</td></tr>
+<tr class="separator:a43307fb39631b973a4330b26f309d03f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1f378fc97506f0b3aea2c33886e498c" id="r_af1f378fc97506f0b3aea2c33886e498c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1f378fc97506f0b3aea2c33886e498c">umbral</a> = 0.3</td></tr>
+<tr class="separator:af1f378fc97506f0b3aea2c33886e498c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab94a3f6d5c6e1b0c1b072cea8db6c613" id="r_ab94a3f6d5c6e1b0c1b072cea8db6c613"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab94a3f6d5c6e1b0c1b072cea8db6c613">x_promedio</a> = 0</td></tr>
+<tr class="separator:ab94a3f6d5c6e1b0c1b072cea8db6c613"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a106b0de15a24268e756d9eb2c550da57" id="r_a106b0de15a24268e756d9eb2c550da57"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a106b0de15a24268e756d9eb2c550da57">y_promedio</a> = 0</td></tr>
+<tr class="separator:a106b0de15a24268e756d9eb2c550da57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22aa4bca587f8effc18ec5906cf3882e" id="r_a22aa4bca587f8effc18ec5906cf3882e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22aa4bca587f8effc18ec5906cf3882e">z_promedio</a> = 0</td></tr>
+<tr class="separator:a22aa4bca587f8effc18ec5906cf3882e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentación de «define»</h2>
+<a id="ad4455691936f92fdd6c37566fc58ba1f" name="ad4455691936f92fdd6c37566fc58ba1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4455691936f92fdd6c37566fc58ba1f">&#9670;&#160;</a></span>BAUD_RATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BAUD_RATE&#160;&#160;&#160;115200</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>baud rate </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00036">36</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+</div>
+</div>
+<a id="a1d2e92a2505a8cb14b67a8822a6362a3" name="a1d2e92a2505a8cb14b67a8822a6362a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d2e92a2505a8cb14b67a8822a6362a3">&#9670;&#160;</a></span>CANTIDAD_VALORES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CANTIDAD_VALORES&#160;&#160;&#160;10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cuantos valores se toman en cuenta para suavizar la señal. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00046">46</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00128">readacc_task()</a>.</p>
+
+</div>
+</div>
+<a id="a3df1b4cad09974bfc68858fad7cdc054" name="a3df1b4cad09974bfc68858fad7cdc054"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3df1b4cad09974bfc68858fad7cdc054">&#9670;&#160;</a></span>CONFIG_BLINK_PERIOD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CONFIG_BLINK_PERIOD&#160;&#160;&#160;500</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Periodo para TOGGLE de LED_BT. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00066">66</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a7c2d2b121faf048e9623df797612378c" name="a7c2d2b121faf048e9623df797612378c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c2d2b121faf048e9623df797612378c">&#9670;&#160;</a></span>DECIMAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DECIMAL&#160;&#160;&#160;10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constante 10. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00041">41</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+</div>
+</div>
+<a id="a597105285373b11c85e03a120ec4b9f3" name="a597105285373b11c85e03a120ec4b9f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a597105285373b11c85e03a120ec4b9f3">&#9670;&#160;</a></span>FREC_LECTURA_US</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FREC_LECTURA_US&#160;&#160;&#160;20000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>frecuencia de lectura de datos en us </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00056">56</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00247">app_main()</a> y <a class="el" href="_proyecto___final__conprom_8c_source.html#l00172">contarpasos_task()</a>.</p>
+
+</div>
+</div>
+<a id="ab7d58dd43d29fe9fc31d70827e5d9d3a" name="ab7d58dd43d29fe9fc31d70827e5d9d3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7d58dd43d29fe9fc31d70827e5d9d3a">&#9670;&#160;</a></span>LECTURAS_CALIBRACION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LECTURAS_CALIBRACION&#160;&#160;&#160;100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cuantos valores se quieren tomar en cuenta. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00051">51</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00213">Calibrate_Acc()</a>.</p>
+
+</div>
+</div>
+<a id="a7a3ccd8a43b5c5e8a4d573780da1fd4a" name="a7a3ccd8a43b5c5e8a4d573780da1fd4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a3ccd8a43b5c5e8a4d573780da1fd4a">&#9670;&#160;</a></span>LED_BT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LED_BT&#160;&#160;&#160;<a class="el" href="group___l_e_d.html#ggab6831a7d06c0a2bc69f9b024f6445a80a11a9adb9054de1fe01d6a6750075f57b">LED_1</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Led que se enciende para indicar estado de conexion BT. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00071">71</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a6005c338456fad88870e6d2da2b958fe" name="a6005c338456fad88870e6d2da2b958fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6005c338456fad88870e6d2da2b958fe">&#9670;&#160;</a></span>PERIODO_REFRACTARIO_US</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PERIODO_REFRACTARIO_US&#160;&#160;&#160;400000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tiempo por el cual no se va a tomar una nueva lectura. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00061">61</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00172">contarpasos_task()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de funciones</h2>
+<a id="a630544a7f0a2cc40d8a7fefab7e2fe70" name="a630544a7f0a2cc40d8a7fefab7e2fe70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a630544a7f0a2cc40d8a7fefab7e2fe70">&#9670;&#160;</a></span>app_main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void app_main </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00247">247</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="ble__mcu_8h_source.html#l00054">BLE_CONNECTED</a>, <a class="el" href="ble__mcu_8h_source.html#l00053">BLE_DISCONNECTED</a>, <a class="el" href="ble__mcu_8h_source.html#l00052">BLE_OFF</a>, <a class="el" href="ble__mcu_8c_source.html#l00452">BleInit()</a>, <a class="el" href="ble__mcu_8c_source.html#l00530">BleStatus()</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00213">Calibrate_Acc()</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00066">CONFIG_BLINK_PERIOD</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00172">contarpasos_task()</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00075">contarpasos_task_handle</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00120">contarpasos_timer()</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00056">FREC_LECTURA_US</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00071">LED_BT</a>, <a class="el" href="led_8c_source.html#l00065">LedOff()</a>, <a class="el" href="led_8c_source.html#l00046">LedOn()</a>, <a class="el" href="led_8c_source.html#l00031">LedsInit()</a>, <a class="el" href="led_8c_source.html#l00084">LedToggle()</a>, <a class="el" href="ili9341_8c_source.html#l00019">NULL</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00239">read_data()</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00128">readacc_task()</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00074">readacc_task_handle</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00112">readacc_timer()</a>, <a class="el" href="timer__mcu_8h_source.html#l00040">timer_config_t::timer</a>, <a class="el" href="timer__mcu_8h_source.html#l00032">TIMER_A</a>, <a class="el" href="timer__mcu_8h_source.html#l00033">TIMER_B</a>, <a class="el" href="timer__mcu_8c_source.html#l00055">TimerInit()</a> y <a class="el" href="timer__mcu_8c_source.html#l00110">TimerStart()</a>.</p>
+
+</div>
+</div>
+<a id="acaf0d547476901a90e4a51d6e81fc284" name="acaf0d547476901a90e4a51d6e81fc284"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaf0d547476901a90e4a51d6e81fc284">&#9670;&#160;</a></span>Calibrate_Acc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Calibrate_Acc </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calibra el acelerometro calculando los valores promedios del estado inicial. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>1 (TRUE) si no hay error </dd></dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00213">213</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_proyecto___final__conprom_8c_source.html#l00051">LECTURAS_CALIBRACION</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00095">x_promedio</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00100">y_promedio</a> y <a class="el" href="_proyecto___final__conprom_8c_source.html#l00105">z_promedio</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00247">app_main()</a> y <a class="el" href="_proyecto___final__conprom_8c_source.html#l00239">read_data()</a>.</p>
+
+</div>
+</div>
+<a id="a0875cb769502462b561850733b990335" name="a0875cb769502462b561850733b990335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0875cb769502462b561850733b990335">&#9670;&#160;</a></span>contarpasos_task()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">contarpasos_task </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>tarea que se encarga de determinar si hubo o no un paso </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00172">172</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="ble__mcu_8c_source.html#l00544">BleSendString()</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00080">cantidad_pasos</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00056">FREC_LECTURA_US</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00061">PERIODO_REFRACTARIO_US</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00090">umbral</a> y <a class="el" href="_proyecto___final__conprom_8c_source.html#l00085">vector_acc</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a89fa2f6b0c081e4de20190c8daf37335" name="a89fa2f6b0c081e4de20190c8daf37335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89fa2f6b0c081e4de20190c8daf37335">&#9670;&#160;</a></span>contarpasos_timer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void contarpasos_timer </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>param</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00120">120</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_proyecto___final__conprom_8c_source.html#l00075">contarpasos_task_handle</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="ab56e1ff0f71e003f2e08c6ec294528b1" name="ab56e1ff0f71e003f2e08c6ec294528b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab56e1ff0f71e003f2e08c6ec294528b1">&#9670;&#160;</a></span>read_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void read_data </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00239">239</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_proyecto___final__conprom_8c_source.html#l00213">Calibrate_Acc()</a> y <a class="el" href="_proyecto___final__conprom_8c_source.html#l00080">cantidad_pasos</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a37c6dae4f03b053a4a417d637bf18149" name="a37c6dae4f03b053a4a417d637bf18149"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37c6dae4f03b053a4a417d637bf18149">&#9670;&#160;</a></span>readacc_task()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void readacc_task </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>pvParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00128">128</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_proyecto___final__conprom_8c_source.html#l00046">CANTIDAD_VALORES</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00085">vector_acc</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00095">x_promedio</a>, <a class="el" href="_proyecto___final__conprom_8c_source.html#l00100">y_promedio</a> y <a class="el" href="_proyecto___final__conprom_8c_source.html#l00105">z_promedio</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a73ebd5b43f5ef2b134485e64d95e1620" name="a73ebd5b43f5ef2b134485e64d95e1620"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73ebd5b43f5ef2b134485e64d95e1620">&#9670;&#160;</a></span>readacc_timer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void readacc_timer </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>param</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00112">112</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_proyecto___final__conprom_8c_source.html#l00074">readacc_task_handle</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00247">app_main()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de variables</h2>
+<a id="a7cb81c96bfda294e67390f2f340014c6" name="a7cb81c96bfda294e67390f2f340014c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cb81c96bfda294e67390f2f340014c6">&#9670;&#160;</a></span>cantidad_pasos</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cantidad_pasos = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00080">80</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00172">contarpasos_task()</a> y <a class="el" href="_proyecto___final__conprom_8c_source.html#l00239">read_data()</a>.</p>
+
+</div>
+</div>
+<a id="a294cd207b989defd4fe3eba704337da8" name="a294cd207b989defd4fe3eba704337da8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a294cd207b989defd4fe3eba704337da8">&#9670;&#160;</a></span>contarpasos_task_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t contarpasos_task_handle = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00075">75</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00247">app_main()</a> y <a class="el" href="_proyecto___final__conprom_8c_source.html#l00120">contarpasos_timer()</a>.</p>
+
+</div>
+</div>
+<a id="a0c622d8a0cb2bce1b4fbff88a1d844f5" name="a0c622d8a0cb2bce1b4fbff88a1d844f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c622d8a0cb2bce1b4fbff88a1d844f5">&#9670;&#160;</a></span>readacc_task_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t readacc_task_handle = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00074">74</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00247">app_main()</a> y <a class="el" href="_proyecto___final__conprom_8c_source.html#l00112">readacc_timer()</a>.</p>
+
+</div>
+</div>
+<a id="af1f378fc97506f0b3aea2c33886e498c" name="af1f378fc97506f0b3aea2c33886e498c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1f378fc97506f0b3aea2c33886e498c">&#9670;&#160;</a></span>umbral</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float umbral = 0.3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00090">90</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00172">contarpasos_task()</a>.</p>
+
+</div>
+</div>
+<a id="a43307fb39631b973a4330b26f309d03f" name="a43307fb39631b973a4330b26f309d03f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43307fb39631b973a4330b26f309d03f">&#9670;&#160;</a></span>vector_acc</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float vector_acc = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00085">85</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00172">contarpasos_task()</a> y <a class="el" href="_proyecto___final__conprom_8c_source.html#l00128">readacc_task()</a>.</p>
+
+</div>
+</div>
+<a id="ab94a3f6d5c6e1b0c1b072cea8db6c613" name="ab94a3f6d5c6e1b0c1b072cea8db6c613"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab94a3f6d5c6e1b0c1b072cea8db6c613">&#9670;&#160;</a></span>x_promedio</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float x_promedio = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00095">95</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00213">Calibrate_Acc()</a> y <a class="el" href="_proyecto___final__conprom_8c_source.html#l00128">readacc_task()</a>.</p>
+
+</div>
+</div>
+<a id="a106b0de15a24268e756d9eb2c550da57" name="a106b0de15a24268e756d9eb2c550da57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a106b0de15a24268e756d9eb2c550da57">&#9670;&#160;</a></span>y_promedio</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float y_promedio = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00100">100</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00213">Calibrate_Acc()</a> y <a class="el" href="_proyecto___final__conprom_8c_source.html#l00128">readacc_task()</a>.</p>
+
+</div>
+</div>
+<a id="a22aa4bca587f8effc18ec5906cf3882e" name="a22aa4bca587f8effc18ec5906cf3882e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22aa4bca587f8effc18ec5906cf3882e">&#9670;&#160;</a></span>z_promedio</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float z_promedio = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_proyecto___final__conprom_8c_source.html#l00105">105</a> del archivo <a class="el" href="_proyecto___final__conprom_8c_source.html">Proyecto_Final_conprom.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_proyecto___final__conprom_8c_source.html#l00213">Calibrate_Acc()</a> y <a class="el" href="_proyecto___final__conprom_8c_source.html#l00128">readacc_task()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d9edf6c004b4a7ff14fe9ae7a92214ee.html">firmware</a></li><li class="navelem"><a class="el" href="dir_429d80758da54da73083af4edd40d0b3.html">projects</a></li><li class="navelem"><a class="el" href="dir_24d9d30cf064c654b3202c380d783b19.html">Proyecto_Final_conprom</a></li><li class="navelem"><a class="el" href="dir_fbe9c7046b1d58bb0636842e3a214987.html">main</a></li><li class="navelem"><a class="el" href="_proyecto___final__conprom_8c.html">Proyecto_Final_conprom.c</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+\chapter{Proyecto Nuevo}
+\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2proyecto__nuevo}{}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2proyecto__nuevo}\index{Proyecto Nuevo@{Proyecto Nuevo}}
+\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2proyecto__nuevo_autotoc_md20}%
+\Hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2proyecto__nuevo_autotoc_md20}%
+ A continuación se detallan los pasos para crear un nuevo proyecto a partir del proyecto x\+\_\+template.\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2proyecto__nuevo_autotoc_md21}{}\doxysection{\texorpdfstring{Crear proyecto nuevo}{Crear proyecto nuevo}}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2proyecto__nuevo_autotoc_md21}
+
+\begin{DoxyEnumerate}
+\item Desde su explorador de archivos realice una copia de la carpeta {\ttfamily x\+\_\+template} (ubicada en {\ttfamily C\+:/\+Repositorios/\+EProgramable\+\_\+\+ESP32/firmware/projects/}) y renómbrela según el proyecto a realizar (en este ejemplo se reemplazará {\ttfamily x\+\_\+template -\/ copia} por {\ttfamily guia1\+\_\+ej2}).
+
+
+\item En {\bfseries{Visual Studio Code}}, desde el menú {\ttfamily File} seleccione la opción {\ttfamily Add Folder to Workspace}.
+
+
+\item Seleccione la carpeta creada.
+
+
+\item Se le mostrará una ventana preguntando si confía en los autores de estos archivos. Seleccione la opción {\ttfamily Yes, I trust the authors}.
+\item En la barra del Explorador (izquierda de la ventana) se le mostrará el nuevo proyecto agregado.
+
+
+\item Abra el archivo {\ttfamily CMake\+Lists.\+txt} ubicado en la carpeta {\ttfamily guia1\+\_\+ej2} y modifique el nombre del proyecto en la línea 9 (en este caso reemplazar {\ttfamily project(x\+\_\+template)} por {\ttfamily project(guia1\+\_\+ej2)}). ~\newline
+
+
+
+\end{DoxyEnumerate}
+
+\begin{quote}
+\mbox{[}!\+IMPORTANT\mbox{]} No repetir nombres entre proyectos distintos, ya que puede traer problemas a la hora de Depurar (el programa utiliza el nombre del proyecto para nombrar los binarios creados en el proceso de compilación). \end{quote}
+
+\begin{DoxyEnumerate}
+\item Para comenzar a trabajar con el mismo, primero debe seleccionarlo como proyecto activo (presione el botón  ({\ttfamily ESP-\/\+IDF\+: Current Project}) y luego seleccione {\ttfamily guia1\+\_\+ej2}).
+
+
+\item OPCIONAL\+: También se puede cambiar el nombre del archivo fuente del proyecto (en este caso el archivo {\ttfamily x\+\_\+template.\+c}) que se encuentra en la carpeta {\ttfamily main}, haciendo click derecho sobre el nombre del mismo y presionando en {\ttfamily Rename...}.
+
+
+
+⚠️ {\bfseries{Importante\+:}} Asegúrese que luego de cambiar el nombre del archivo, también se haya actualizado el contenido del {\ttfamily CMake\+Lists.\+txt} ubicado en la carpeta {\ttfamily main} con el nuevo nombre elegido. De no ser así, modifíquelo manualmente.
+
+
+\end{DoxyEnumerate}
+
+\begin{quote}
+\mbox{[}!\+NOTE\mbox{]} Cada proyecto tiene dos archivos {\ttfamily CMake\+Lists.\+txt} distintos\+: uno en la raiz del proyecto ({\ttfamily ./guia1\+\_\+ej2/\+CMake\+Lists.txt}) donde se modifica el nombre del proyecto, y otro dentro de la sub-\/carpeta {\ttfamily main} ({\ttfamily ./guia1\+\_\+ej2/main/\+CMake\+Lists.txt}) donde se modifica el nombre del archivo fuente ({\ttfamily .c}). \end{quote}

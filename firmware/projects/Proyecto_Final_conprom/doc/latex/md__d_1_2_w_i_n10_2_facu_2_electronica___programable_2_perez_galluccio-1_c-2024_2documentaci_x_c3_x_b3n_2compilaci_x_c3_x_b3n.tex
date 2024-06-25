@@ -1,0 +1,96 @@
+\chapter{Compilación}
+\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2compilaci_x_c3_x_b3n}{}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2compilaci_x_c3_x_b3n}\index{Compilación@{Compilación}}
+\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2compilaci_x_c3_x_b3n_autotoc_md0}%
+\Hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2compilaci_x_c3_x_b3n_autotoc_md0}%
+ A continuación se detallan los pasos para la descarga del repositorio de la cátedra y la compilación del primer proyecto de ejemplo.
+
+
+\begin{DoxyEnumerate}
+\item Descarga de Repositorio
+\item Configuración del Espacio de Trabajo
+\item Compilación
+\end{DoxyEnumerate}\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2compilaci_x_c3_x_b3n_autotoc_md1}{}\doxysection{\texorpdfstring{Descarga de Repositorio}{Descarga de Repositorio}}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2compilaci_x_c3_x_b3n_autotoc_md1}
+
+\begin{DoxyEnumerate}
+\item Cree una carpeta {\ttfamily Repositorios} en su disco {\ttfamily C\+:/}.
+\item Ejecute la aplicación {\itshape Git Bash} y navegue hasta la carpeta creada.
+\end{DoxyEnumerate}
+
+\begin{quote}
+\mbox{[}!\+TIP\mbox{]} También puede pararse sobre la carpeta en el explorador de archivos, hacer click derecho sobre la misma y elegir la opción {\ttfamily Open Git Bash here}. \end{quote}
+
+\begin{DoxyEnumerate}
+\item Ejecute el siguiente comando\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/prototipado/EProgramable\_FIUNER.git}
+
+\end{DoxyCode}
+
+\item A continuación se descargará el Repositorio en la carpeta correspondiente.
+
+
+\end{DoxyEnumerate}\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2compilaci_x_c3_x_b3n_autotoc_md2}{}\doxysection{\texorpdfstring{Configuración del Espacio de Trabajo}{Configuración del Espacio de Trabajo}}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2compilaci_x_c3_x_b3n_autotoc_md2}
+
+\begin{DoxyEnumerate}
+\item En {\bfseries{Visual Studio Code}} seleccionar el menú File -\/\texorpdfstring{$>$}{>} Open Workspace from File... 
+\item Seleccione el archivo {\ttfamily EProgramable\+\_\+\+C6} ubicado en {\ttfamily C\+:/\+Repositorios/\+EProgramable\+\_\+\+FIUNER/firmware/}. 
+\item Se le mostrará una ventana preguntando si confía en los autores de estos archivos. Seleccione la opción {\ttfamily Yes, I trust the authors}.
+\item En la barra del Explorador (izquierda de la ventana) se le mostrará un árbol con la estructura de directorios del Espacio de Trabajo propuesta por la cátedra. Allí encontrará\+:
+\begin{DoxyItemize}
+\item drivers\+: carpeta que contiene los drivers del microcontrolador y dispositivos.
+\item 0\+\_\+binking\+: proyecto de ejemplo.
+\item 1\+\_\+binking\+\_\+switch\+: proyecto de ejemplo.
+\item x\+\_\+template\+: plantilla a partir de la cual crear nuevos proyectos.
+\end{DoxyItemize}
+
+
+\end{DoxyEnumerate}\hypertarget{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2compilaci_x_c3_x_b3n_autotoc_md3}{}\doxysection{\texorpdfstring{Compilación ejemplo blinking}{Compilación ejemplo blinking}}\label{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2compilaci_x_c3_x_b3n_autotoc_md3}
+
+\begin{DoxyEnumerate}
+\item Comencemos compilando el primer ejemplo 0\+\_\+blinking. Como tenemos múltiples proyectos en el Espacio de Trabajo, debemos seleccionar siempre sobre cuál estamos trabajando. Para eso presione el botón  ({\ttfamily ESP-\/\+IDF\+: Current Project}) y luego seleccione {\ttfamily 0\+\_\+blinking}. 
+\item Dentro de la carpeta 0\+\_\+binking (y en la de todos los proyecto) podrá encontrar\+:
+\begin{DoxyItemize}
+\item .vscode\+: carpeta donde se guardan los archivos de configuración del proyecto.
+\item main\+: carpeta dende se encuentra el código fuente del proyecto.
+\item CMakelist.\+txt\+: archivo de configuración para la construcción del proyecto.
+\item REDAME.\+md\+: archivo con la descripción del proyecto.
+\item sdkconfig\+: archivo de configuración del software del fabricante.
+\end{DoxyItemize}
+\item Abra el archivo {\ttfamily c\+\_\+cpp\+\_\+properties.\+json} ubicado en {\ttfamily 0\+\_\+blinking/.vscode/} y revise que el directorio mostrado {\ttfamily "{}compiler\+Path"{}} sea correcto. Esta es la ubicación del compilador ({\bfseries{riscv32-\/esp-\/elf-\/gcc.\+exe}}), y el valor por defecto {\ttfamily C\+:\textbackslash{}\textbackslash{}Usuarios\textbackslash{}\textbackslash{}PC\textbackslash{}\textbackslash{}.espressif\textbackslash{}\textbackslash{}tools\textbackslash{}\textbackslash{}riscv32-\/esp-\/elf\textbackslash{}\textbackslash{}esp-\/12.\+2.\+0\+\_\+20230208\textbackslash{}\textbackslash{}riscv32-\/esp-\/elf\textbackslash{}\textbackslash{}bin\textbackslash{}\textbackslash{}riscv32-\/esp-\/elf-\/gcc.\+exe} puede no coincidir con el directorio donde se encuentre en su equipo, ya que depende de la versión de IDF instalada y de la unidad donde usted haya elegido realizar la instalación. Si el directorio mostrado no existe, corrijalo por el valor correcto.
+
+
+\end{DoxyEnumerate}
+
+\begin{quote}
+\mbox{[}!\+TIP\mbox{]} Las ubicaciones más comunes de instalación son {\ttfamily C\+:/\+Espressif/tools/...} y {\ttfamily USERPROFILE\%/.espressif/tools/...} en {\bfseries{Windows}} y {\ttfamily \$HOME/.espressif/tools/...} en {\bfseries{Linux}}. \end{quote}
+\begin{quote}
+\mbox{[}!\+NOTE\mbox{]} No se preocupe si el programa le muestra una advertencia en el valor de {\ttfamily "{}compile\+Commands"{}}, el mismo desaparecerá luego de la primera compilación. \end{quote}
+
+\begin{DoxyEnumerate}
+\item El código fuente del programa lo puede encontrar en {\ttfamily 0\+\_\+blinking/main/0\+\_\+blinking.\+c}
+\end{DoxyEnumerate}
+
+\begin{quote}
+\mbox{[}!\+NOTE\mbox{]} No se preocupe si el programa le muestra un error en el macro {\ttfamily port\+TICK\+\_\+\+PERIOD\+\_\+\+MS}, el mismo desaparecerá luego de la primera compilación. \end{quote}
+
+\begin{DoxyEnumerate}
+\item Para compilar el proyecto, presione el botón  ({\ttfamily ESP-\/\+IDF\+: Build project}). Aparecerá una notificación de que el proyecto está siendo compilado.
+
+
+\end{DoxyEnumerate}
+
+\begin{quote}
+\mbox{[}!\+NOTE\mbox{]} La primera compilación de un proyecto puede tomar varios minutos. \end{quote}
+
+\begin{DoxyEnumerate}
+\item Una vez finalizada la compilación, el programa le mostrará en el terminal el porcentaje de memoria del microcontrolador que ocupará el proyecto. Además se puede observar en la barra del Explorador que se ha creado una nueva carpeta {\ttfamily 0\+\_\+blinking/build/}, donde se almacenan todos los archivos resultado de la compilación.
+
+
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+
+
+Una vez finalizada la compilación del proyecto puede continuar con el instructivo de \doxysectlink{md__d_1_2_w_i_n10_2_facu_2_electronica___programable_2_perez_galluccio-1_c-2024_2documentaci_x_c3_x_b3n_2depuraci_x_c3_x_b3n}{Grabación y Depuración}{0}. 
